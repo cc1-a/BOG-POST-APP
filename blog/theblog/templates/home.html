@@ -1,0 +1,65 @@
+{% extends 'index.html'%}
+
+{% block head%}{% endblock %}
+
+
+{% block body%}
+    {% block content %}
+        {% if user.is_authenticated %}
+            <div class="container">
+                <br/>
+            
+                <h1>Posts!</h1>
+                <ul>
+                    {% for post in object_list%}
+                            <br/>
+                            <hr>
+                            <li><a href = "{% url 'artical-detail' post.pk %}">
+
+                                {{ post.title }}</a> By: {{ post.author.first_name }}                 
+                                {{ post.author.last_name }}
+                                <br/>
+                                {{ post.body }}
+                                <br/>
+                                <a class='btn btn-outline-success' href="{% url 'update_post' post.pk %}">Edit</a>
+                                <a class='btn btn-outline-danger' href="{% url 'delete_post' post.pk %}">Delete</a>
+                                <a class='btn btn-outline-primary' href="{% url 'artical-detail' post.pk %}">More >></a>
+
+
+
+                                
+
+                            </li>
+                            
+                            <hr>
+            
+
+
+                    {% endfor%}
+                </ul>
+            </div>
+        {% else %}
+            <br/>
+            <br/>
+            <hr>
+            <br/>
+            
+            <br/> <small><h3>Dear User,</h3> if you have an account please <a class="btn btn-outline-success" href=" {% url 'login' %}">log in</a> or if you don't have an account please register <a class="btn btn-outline-primary" href=" {% url 'register' %}">Register</a>
+             <br/>
+             <br/>
+             <hr>
+			
+				
+			
+        
+        
+        
+        
+        
+        
+        {% endif %}
+
+    {% endblock %}
+
+
+{% endblock %}

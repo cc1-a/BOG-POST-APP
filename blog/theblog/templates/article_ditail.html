@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %}{{ post.title_tag }}{% endblock %}
+ {% block content %}
+        {% if user.is_authenticated %}
+
+                <h1>{{ post.title }}</h1>
+
+                        <small>By: {{ post.author.first_name }}
+
+
+                        {{ post.author.last_name }}-
+                        {{ post.post_date }}
+                        
+                        </small>
+                        <br/>
+                        <hr>
+                        <br/>
+                        <p>{{ post.body }}</p>
+
+                        <br/><br/>
+                        <a href=" {% url 'home' %} " class="btn btn-outline-primary">Back</a>
+                        <a class='btn btn-outline-success' href="{% url 'update_post' post.pk %}">Edit</a>
+                                <a class='btn btn-outline-danger' href="{% url 'delete_post' post.pk %}">Delete</a>
+        {% else %}
+                <small>Dear User, if you have an account please <a class="btn btn-outline-success" href=" {% url 'login' %}">log in</a> or if you don't have an account please register <a class="btn btn-outline-primary" href=" {% url 'register' %}">Register</a>
+        {% endif %}
+
+
+{% endblock  %} 

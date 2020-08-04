@@ -1,0 +1,36 @@
+{% extends 'index.html'%}
+
+
+    {% block content %}
+
+        {% if user.is_athenticated %}
+
+            <h1>Update post</h1>
+
+            <br/>
+            <br/>
+
+
+            <div class='form-group'>
+                <form method='POST'>
+                    {% csrf_token %} 
+                    {{ form.as_p }}
+                    <button  class="btn btn-outline-info">Update</button>
+                
+                
+                
+                </form>
+            </div>
+
+        {% else %}
+        <small>Dear User, if you have an account please <a class="btn btn-outline-success" href=" {% url 'login' %}">log in</a> or if you don't have an account please register <a class="btn btn-outline-primary" href=" {% url 'register' %}">Register</a>
+        {% endif %}
+
+
+
+
+            
+
+    {% endblock %}
+
+

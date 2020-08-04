@@ -1,0 +1,40 @@
+{% extends 'index.html'%}
+
+
+    {% block content %}
+        {% if user.is_authenticated %}
+
+
+
+            <h1>Delete post</h1>
+
+            <br/>
+            <br/>
+            <h3>Delete: {{ post.title }}</h1>
+
+
+            <div class='form-group'>
+                <form method='POST'>
+                    {% csrf_token %} 
+                    <strong>Are you sure ?</strong><br/>
+                    
+                    <button  class="btn btn-outline-danger">Delete Post</button>
+                    <a href=" {% url 'home' %} " class="btn btn-outline-primary">Back</a>
+                
+                
+                
+                </form>
+            </div>
+
+        {% else %}
+            <small>Dear User, if you have an account please <a class="btn btn-outline-success" href=" {% url 'login' %}">log in</a> or if you don't have an account please register <a class="btn btn-outline-primary" href=" {% url 'register' %}">Register</a>
+        {% endif %}
+
+
+
+
+            
+
+    {% endblock %}
+
+
